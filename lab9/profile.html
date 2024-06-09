@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Edit Form</title>
+</head>
+<body>
+  <form id="profileEditForm" onsubmit="validateProfileForm(event)">
+    <div>
+      <label for="firstName">Имя:</label>
+      <input type="text" id="firstName" required>
+    </div>
+    <div>
+      <label for="middleName">Отчество:</label>
+      <input type="text" id="middleName" required>
+    </div>
+    <div>
+      <label for="lastName">Фамилия:</label>
+      <input type="text" id="lastName" required>
+    </div>
+    <div>
+      <label for="birthDate">Дата рождения (ДД.ММ.ГГГГ):</label>
+      <input type="text" id="birthDate" pattern="\d{2}\.\d{2}\.\d{4}">
+    </div>
+    <div>
+      <label for="address">Адрес:</label>
+      <input type="text" id="address">
+    </div>
+    <button type="submit">Сохранить</button>
+  </form>
+  <p id="profileError"></p>
+
+  <script>
+    function validateProfileForm(event) {
+      event.preventDefault();
+      const birthDate = document.getElementById('birthDate').value;
+      const birthDatePattern = /^\d{2}\.\d{2}\.\d{4}$/;
+      const errorElement = document.getElementById('profileError');
+
+      if (birthDate && !birthDatePattern.test(birthDate)) {
+        errorElement.textContent = 'Дата рождения должна быть в формате ДД.ММ.ГГГГ';
+      } else {
+        errorElement.textContent = '';
+        // Отправка формы или дальнейшая обработка
+        alert('Форма успешно отправлена!');
+      }
+    }
+  </script>
+</body>
+</html>

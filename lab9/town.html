@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Selector</title>
+</head>
+<body>
+  <div>
+    <select id="citySelector" onchange="checkCity()">
+      <option value="">Выберите город</option>
+      <option value="Москва">Москва</option>
+      <option value="Нью-Йорк">Нью-Йорк</option>
+      <option value="Рио-де-Жанейро">Рио-де-Жанейро</option>
+    </select>
+    <p id="cityMessage"></p>
+  </div>
+
+  <script>
+    function checkCity() {
+      const citySelector = document.getElementById('citySelector');
+      const cityMessage = document.getElementById('cityMessage');
+      const city = citySelector.value;
+
+      if (city && city !== 'Рио-де-Жанейро') {
+        cityMessage.textContent = 'Нет, это не Рио-де-Жанейро!';
+      } else {
+        cityMessage.textContent = '';
+      }
+    }
+  </script>
+</body>
+</html>

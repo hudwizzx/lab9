@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator</title>
+</head>
+<body>
+  <div>
+    <input type="date" id="birthDate">
+    <p id="ageInSeconds">Вы прожили: 0 секунд</p>
+  </div>
+
+  <script>
+    function calculateAgeInSeconds() {
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      const now = new Date();
+      const ageInSeconds = Math.floor((now - birthDate) / 1000);
+      document.getElementById('ageInSeconds').textContent = `Вы прожили: ${ageInSeconds} секунд`;
+    }
+
+    setInterval(calculateAgeInSeconds, 1000);
+  </script>
+</body>
+</html>

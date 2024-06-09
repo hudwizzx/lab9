@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Filter</title>
+</head>
+<body>
+  <div>
+    <input type="number" id="numberInput" placeholder="Введите число">
+    <button onclick="addNumber()">+</button>
+    <div>
+      <input type="radio" name="filter" value="all" checked onclick="filterNumbers()"> Все
+      <input type="radio" name="filter" value="even" onclick="filterNumbers()"> Четные
+      <input type="radio" name="filter" value="odd" onclick="filterNumbers()"> Нечетные
+    </div>
+    <ul id="numberList"></ul>
+  </div>
+
+  <script>
+    const numbers = [];
+
+    function addNumber() {
+      const numberInput = document.getElementById('numberInput');
+      const number = parseInt(numberInput.value);
+      if (!isNaN(number)) {
+        numbers.push(number);
+        numberInput.value = '';
+        filterNumbers();
+      }
+    }
+
+    function filterNumbers() {
+      const filter = document.querySelector('input[name="filter"]:checked').value;
+      const numberList = document.getElementById('numberList');
+      numberList.innerHTML = '';
+
+      const filteredNumbers = numbers.filter(number => {
+        if (filter === 'even') return number % 2 === 0;
+        if (filter === 'odd') return number % 2 !== 0;
+        return true;
+      });
+
+      filteredNumbers.forEach(number => {
+        const li = document.createElement('li');
+        li.textContent = number;
+        numberList.appendChild(li);
+      });
+    }
+  </script>
+</body>
+</html>
